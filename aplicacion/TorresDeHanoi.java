@@ -1,6 +1,7 @@
-package topicos;
+package aplicacion;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import topicos.HanoiIterativo;
 /** Created on 06/10/2016. **/
 public class TorresDeHanoi {
     /** Método main. Se encarga de mostrar al usuario las instrucciones y colectar la cantidad de discos que se usará en el programa.
@@ -53,7 +54,9 @@ public class TorresDeHanoi {
                 return;
             } else if (metodo == 2) { //Cuando el usuario elige el modo iterativo.
                 System.out.println("Modo iterativo.");
-                //hanoiIterativo();
+                HanoiIterativo han = new HanoiIterativo(cantidad);
+                han.Mostrar();
+                //han.Mover();
             }
         }
         //En caso de que la cantidad no cumpla los requisitos, se lanzará una excepción
@@ -69,8 +72,7 @@ public class TorresDeHanoi {
     private static void hanoiRecursivo(int n, int origen,  int auxiliar, int destino) {
         if (n == 1) { //Caso base
             System.out.println("Mueve el disco que está en la pila " + origen + " a la pila " + destino + ".");
-        }
-        else { //Caso recursivo
+        } else { //Caso recursivo
             hanoiRecursivo(n - 1, origen, destino, auxiliar);
             //Llamar al método recursivo con exactamente la misma información, sólo que con un disco debajo en el origen.
             System.out.println("Mueve el disco que está en la pila " + origen + " a la pila " + destino + ".");
