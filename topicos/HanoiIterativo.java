@@ -2,8 +2,8 @@ package topicos;
 import java.util.Stack;
 /** Created on 09/10/2016 **/
 public class HanoiIterativo {
-    //Declarar variables e inicializar objetos.
-    // Pila que "emula" las llamadas recursivas.
+    /** Declarar variables e inicializar objetos. **/
+    // Pila que se utilizará para almacenar la información de los distintos movimientos.
     private static Stack pilaDeMovimientos = new Stack();
     // Variable del movimiento actual. Es de tipo long para soportar valores que un int no soportaría.
     private static long movimientoActual;
@@ -63,8 +63,7 @@ public class HanoiIterativo {
     }
 
     /**Método que realiza los movimientos imprimiendo desde y hacia donde se moverá el disco
-     * Recibe los parámetros origen y destino.
-     * No tiene retorno. **/
+     * Recibe los parámetros origen y destino. No tiene retorno. **/
     private static void mover(int origen, int destino) {
         //Se incrementa el número de movimiento actual.
         movimientoActual++;
