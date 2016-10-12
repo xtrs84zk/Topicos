@@ -1,37 +1,91 @@
 package topicos;
-
 import java.util.Stack;
-
+/** Created on 09/10/2016 **/
 public class HanoiIterativo {
+    //Declarar variables e inicializar objetos.
+    // Pila que "emula" las llamadas recursivas.
+    private static Stack pilaDeMovimientos = new Stack();
+    // Variable del movimiento actual. Es de tipo long para soportar valores que un int no soportaría.
+    private static long movimientoActual;
+    // Método que imprime los movimientos de un disco.
 
-    private Stack columnas[];
-
-    // Constructor para el total de aros
-    public HanoiIterativo(int aros) {
-        columnas = new Stack[3];
-        // Se inicializan las columnas vacias
-        columnas[0] = new Stack();
-        columnas[1] = new Stack();
-        columnas[2] = new Stack();
-        // Colocamos en la primera las fichas, de mayor a menor
-        for (int i=aros;i>0;i--) columnas[0].push(i);
+    /** Constructor para la clase HanoiIterativo.
+     * Llama al método "resolverHanoi" con la cantidad de discos a usar. **/
+    public HanoiIterativo(int cantidadDeDiscos) {
+        if(cantidadDeDiscos>=1) resolverHanoi(cantidadDeDiscos);
     }
 
-    // Muestra el estado actual
-    public void Mostrar() {
-        for (int i=0;i<3;i++) {
-            System.out.print("Col. "+i+": ");
-            System.out.println("");
+    /** Método que implementa el algoritmo de Hanoi iterativo.
+     * Recibe la cantidad de discos enviada por el constructor.**/
+    private static void resolverHanoi(int cantidadDeDiscos) {
+
+        int origen = 1; // pila de origen
+        int destino = 3; // pila de  destino
+        int auxiliar = 2; // pila auxiliar
+
+        //Guardando los datos del movimiento en la variable datosDelMovimientoActual.
+        String datosDelMovimientoActual = cantidadDeDiscos + "," + origen + "," + destino + "," + auxiliar;
+
+        pilaDeMovimientos.push(datosDelMovimientoActual);
+
+        // El juego puede continuar mientras la pila de discos no esté vacía.
+        while (!pilaDeMovimientos.empty()) {
+
+            // quando cantidadDeDiscos > 1, devemos empilhar um novo comando
+            if (cantidadDeDiscos > 1) {
+
+                // Decrementando la cantidad de discos (el disco a mover)
+                cantidadDeDiscos--;
+                //Se divide la expresión "datosDelMovimiento" para obtener origen, destino y auxiliar.
+                String[] datosDelMovimiento = datosDelMovimientoActual.split(",");
+                origen = Integer.parseInt(datosDelMovimiento[1]);
+                destino = Integer.parseInt(datosDelMovimiento[2]);
+                auxiliar = Integer.parseInt(datosDelMovimiento[3]);
+
+                // isto seria uma chamada recursiva...
+                datosDelMovimientoActual = cantidadDeDiscos + "," + origen + "," + auxiliar + "," + destino;
+
+                // empilha o novo comando
+                pilaDeMovimientos.push(datosDelMovimientoActual);
+
+                // caso contrário, devemos desempilhar
+                // e executar um movimento
+            } else {
+
+                //desempilha um comando
+                datosDelMovimientoActual = (String) pilaDeMovimientos.pop();
+
+                //Se divide la expresión "datosDelMovimiento" para obtener origen, destino y auxiliar.
+                String[] datosDelMovimiento = datosDelMovimientoActual.split(",");
+                //Se asigna a cada variable su valor.
+                cantidadDeDiscos = Integer.parseInt(datosDelMovimiento[0]);
+                origen = Integer.parseInt(datosDelMovimiento[1]);
+                destino = Integer.parseInt(datosDelMovimiento[2]);
+                auxiliar = Integer.parseInt(datosDelMovimiento[3]);
+
+                //Llamada al método mover
+                mover(origen, destino);
+
+                // Si la cantidad de discos es mayor a 1, se mete a la pila un comando después del movimiento.
+                if (cantidadDeDiscos > 1) {
+                    cantidadDeDiscos--; //Se decrementa la cantidad de discos.
+                    // Se agrupan los datos del movimiento y se meten a la pila.
+                    datosDelMovimientoActual = cantidadDeDiscos + "," + auxiliar + "," + destino + "," + origen;
+                    pilaDeMovimientos.push(datosDelMovimientoActual);
+                }
+
+            }
+
         }
-    }
 
-    // Mueve de la columna origen a la columna destino 1 disco
-    public void Mover(int origen, int destino) {
-        // Mostramos en pantalla lo que hacemos
-        Mostrar();
-        System.out.println("Movemos desde ("+origen+") hasta ("+destino+")");
-        System.out.println("");
-        // Y luego, lo hacemos, claro
-        columnas[destino].push(columnas[origen].pop());
+    }
+    /**Método que realiza los movimientos imprimiendo desde y hacia donde se moverá el disco
+     * Recibe los parámetros origen y destino.
+     * No tiene retorno. **/
+    private static void mover(int origen, int destino) {
+        //Se incrementa el número de movimiento actual.
+        movimientoActual++;
+        //Se hace (imprime) el movimiento.
+        System.out.println("Movimiento " +movimientoActual + ": Mueve el  disco desde " + origen + " hacia " + destino +  ".");
     }
 }

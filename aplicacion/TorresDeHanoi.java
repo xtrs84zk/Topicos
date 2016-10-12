@@ -1,31 +1,31 @@
 package aplicacion;
+import topicos.HanoiIterativo;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-import topicos.HanoiIterativo;
 /** Created on 06/10/2016. **/
-public class TorresDeHanoi {
+public class TorresDeHanoi{
     /** Método main. Se encarga de mostrar al usuario las instrucciones y colectar la cantidad de discos que se usará en el programa.
      * Llama al método Hanoi y le envía la cantidad de discos que debe usar, además del método de solución.
      * Si la excepción IllegalArgumentException es atrapada, la cantidad que introdujo el usuario no es válida.
      * Si la excepción InputMismatchException es atrapada, el usuario introdujo valores de tipo incorrecto.**/
     public static void main(String[] args) {
-        int cantidad, opcion; //Declarar variables.
+        int cantidad, metodoDeResolucion; //Declarar variables.
         cantidad = 0; //Inicializar variable cantidad
         Scanner entrada = new Scanner(System.in); //Inicializando objeto Scanner.
         System.out.println("Torres de Hanoi.");
         System.out.println("Para jugar, sólo necesito la cantidad de discos. Debe ser al menos 2.");
         do { //Menú para elegir el método de resolución.
             System.out.println("¿De qué forma quieres que lo resuelva?");
-            System.out.println("1. Recursiva        2. Iterativa");
-            opcion = entrada.nextInt();
-        } while (opcion != 1 && opcion != 2); //Pedir al menos una vez o hasta obtener una opción correcta.
+            System.out.print("1. Recursiva        2. Iterativa");
+            metodoDeResolucion = entrada.nextInt();
+        } while (metodoDeResolucion != 1 && metodoDeResolucion != 2); //Pedir al menos una vez o hasta obtener una opción correcta.
         do { //En caso de recibir un parámetro incorrecto, debe seguir pidiendo el valor.
             try { //El método Hanoi lanza excepciones, hay que estar preparados para atraparlas.
                 System.out.print("¿Cuántos discos usaré? "); //Pidiendo al usuario la cantidad de discos.
                 cantidad = entrada.nextInt(); // Almacenando la cantidad de discos.
-                Hanoi(cantidad, opcion);//Llamada al método Hanoi.
+                Hanoi(cantidad, metodoDeResolucion);//Llamada al método Hanoi.
             } catch (IllegalArgumentException e) { //La excepción IllegalArgumentException es atrapada.
-                System.out.print("Necesito al menos dos discos para trabajar. ");
+                    System.out.print(e.getMessage());
             } catch (InputMismatchException e) { //La excepción InputMismatchException es atrapada.
                 System.out.print("Necesito un valor entero.");
                 return; //Terminar el método main para evitar más errores.
@@ -33,7 +33,7 @@ public class TorresDeHanoi {
                 System.out.println("Error desconocido: " + e);
                 return; //Terminar el método main para evitar más errores.
             }
-        } while (cantidad < 2); //La cantidad se seguirá pidiendo mientras se reciba una inválida.
+        } while (cantidad < 1); //La cantidad se seguirá pidiendo mientras se reciba una inválida.
     }
 
     /** Método que recibe la cantidad de discos con los que se plantea resolver.
@@ -41,9 +41,9 @@ public class TorresDeHanoi {
      * Llama al método recursivo en caso de que el número sea valido.
      * Si la cantidad es insuficiente (menor a dos) lanzará una excepción del tipo IllegalArgumentsException.
      * En caso de recibir una letra o algún valor que no sea del tipo int, lanzará la excepción InputMismatchException. **/
-    private static  void Hanoi(int cantidad, int metodo) throws Exception {
-        if (cantidad >= 2) {
-            if (metodo == 1) { //Cuando el usuario elige el modo recursivo.
+    private static  void Hanoi(int cantidad, int metodoDeResolucion) throws Exception {
+        if (cantidad >= 1) {
+            if (metodoDeResolucion == 1) { //Cuando el usuario elige el modo recursivo.
                 System.out.println("Modo recursivo.");
                 System.out.println("Los movimientos a realizar son: ");
                 int columna1 = 1; //Aquí es donde están todos los discos al inicio.
@@ -51,16 +51,14 @@ public class TorresDeHanoi {
                 int columna3 = 3; //Esta es la columna de destino, a donde se planea mover los discos.
                 hanoiRecursivo(cantidad, columna1, columna2, columna3); //Método recursivo.
                 System.out.println("Usando esos movimientos, podrás resolverlo. ;) ");
-                return;
-            } else if (metodo == 2) { //Cuando el usuario elige el modo iterativo.
+            } else if (metodoDeResolucion == 2) { //Cuando el usuario elige el modo iterativo.
                 System.out.println("Modo iterativo.");
-                HanoiIterativo han = new HanoiIterativo(cantidad);
-                han.Mostrar();
-                //han.Mover();
+                new HanoiIterativo(cantidad); //Creando un objeto de la clase HanoiIterativo
             }
+        } else { //En caso de que no dé al menos un disco.
+            //En caso de que la cantidad no cumpla los requisitos, se lanzará una excepción
+            throw new IllegalArgumentException("El usuario introdujo una cantidad menor a dos. ");
         }
-        //En caso de que la cantidad no cumpla los requisitos, se lanzará una excepción
-        throw new IllegalArgumentException("El usuario introdujo una cantidad menor a dos.");
     }
     /** Método recursivo encargado de mostrar los movimientos necesarios para
      * resolver "las torres de Hanoi" con el número de discos recibido.
@@ -81,4 +79,5 @@ public class TorresDeHanoi {
             //Llamar al método recursivo diciéndole que mueva el disco inferior de la columna auxiliar a la tercera.
         }
     }
+
 }
