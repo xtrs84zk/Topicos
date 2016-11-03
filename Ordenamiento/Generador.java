@@ -5,7 +5,6 @@ import java.util.Random;
 /** Created by xtrs84zk on 03/11/2016. **/
 class Generador {
     private Generador(){
-        //:v
     }
     public static int[] bestCase(int longitud){
         int[] mejorCasoDeOrdenamiento = new int[longitud];
