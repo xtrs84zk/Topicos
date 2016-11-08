@@ -1,16 +1,14 @@
 package Ordenamiento;
-
 import java.util.Random;
 
-/** Created by xtrs84zk on 03/11/2016. **/
-public class MetodosDeOrdenamiento {
-    private MetodosDeOrdenamiento() {
-
+/** Created by Javier Sánchez on 03/11/2016. **/
+public class metodoDeOrdenamiento {
+    private metodoDeOrdenamiento() {
+        //Constructor privado para que la clase no pueda ser instanciada.
     }
 
     /**
      * Método de ordenamiento denominado burbuja, debido a que los valores "burbujean" hacía la superficie.
-     *
      * @param datos que es el conjunto de datos a ordenar.
      **/
     public static void bubbleSort(int[] datos) {
