@@ -96,18 +96,20 @@ public class MetodosDeOrdenamiento {
                                 int aux = datos[j];
                                 datos[j] = datos[i + 1];
                                 datos[j + 1] = aux;
+                                limiteSuperior--;
                             }
                         }
-                        direccionActual = 1;
+                        direccionActual = 1;// La dirección se invierte.
                     } else {
                         for (int j = limiteInferior; j < limiteSuperior; j--) {
                             if (datos[j] <= datos[j + 1]) {
                                 int aux = datos[j];
                                 datos[j] = datos[i + 1];
                                 datos[j + 1] = aux;
+                                limiteInferior++;
                             }
                         }
-                        direccionActual = 0;
+                        direccionActual = 0; //La dirección se invierte.
                     }
                 }
             }
