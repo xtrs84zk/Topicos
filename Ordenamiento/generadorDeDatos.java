@@ -58,11 +58,28 @@ public class generadorDeDatos {
         //Finalmente se regresa el conjunto creado.
         return mixedCase;
     }
-
+    /** Caso randomCase que regresa un arreglo aleatoriamente ordenado.+
+     * @param longitud que es el tamaño del conjunto de valores.
+     * @return casoAleatorio que es el caso llenado aleatoriamente.**/
     public static int[] randomCase(int longitud) throws Exception{
+        //Se crea e inicializa un objeto de tipo Random llamado aleatorio.
+        Random aleatorio = new Random();
+        //Se crean e inicializan los conjuntos del caso aleatorio, mejor y peor caso
         int[] casoAleatorio = new int[0];
+        int[] mejorCaso = bestCase(longitud);
+        int[] peorCaso = worstCase(longitud);
+        //En caso de que la longitud recibida sea mayor a 0, se procede
         if(longitud>0){
             casoAleatorio = new int[longitud];
+            for(int i = 0; i<casoAleatorio.length; i++){
+                if(aleatorio.nextInt(1) == 0){
+                    //en caso de que el aleatorio regrese un 1, se pone un valor ordenado.
+                    casoAleatorio[i] = mejorCaso[i];
+                } else { //En caso de recibir otro valor (un cero) se pone un valor sin ordenar.
+                    casoAleatorio[i] = peorCaso[i];
+                }
+            }
+            //En caso de recibir una longitud inválida, se lanza una excepción.
         } else {
             throw new Exception("La longitud es menor a uno.");
         }
