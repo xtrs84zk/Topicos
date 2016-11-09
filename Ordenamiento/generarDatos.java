@@ -1,4 +1,5 @@
 package Ordenamiento;
+import javax.swing.*;
 import java.util.Random;
 
 /** Created by Javier Sánchez on 03/11/2016. **/
@@ -12,6 +13,7 @@ public class generarDatos {
         //Se llena el conjunto con valores ordenados (en forma ascendiente).
         for(int i = 0; i<datos.length; i++) datos[i] = (i + 1);
     }
+
     /** Método worstCase que genera el peor caso de ordenamiento posible.
      * @param datos que son los datos requerida. **/
     public static void worstCase(int [] datos){
@@ -29,13 +31,13 @@ public class generarDatos {
         //Se crea el objeto Random con nombre aleatorio.
         Random aleatorio = new Random();
         //Se copian la cantidad de valores ordenados del mejor caso al caso mixto.
-        int[] datosOrdenados = new int[(datos.length*(porcentaje/100))];
+        int datosOrdenados = (datos.length*(porcentaje/100));
         //Se llena el resto del arreglo con valores generados aleatoriamente.
-        for(int i = datosOrdenados.length+1; i<datos.length; i++){
+        for(int i = datosOrdenados+1; i<datos.length; i++){
             datos[i] = aleatorio.nextInt();
         }
         //Llenando la parte ordenada del arreglo.
-        for(int j = 0; j<datosOrdenados.length; j++) datos[j] = j + 1;
+        for(int j = 0; j<datosOrdenados; j++) datos[j] = j + 1;
     }
     /** Caso randomCase que regresa un arreglo aleatoriamente ordenado.+
      * @param datos que es conjunto de valores.**/
