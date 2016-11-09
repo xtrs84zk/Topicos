@@ -38,22 +38,20 @@ public class generarDatos {
         for(int j = 0; j<datosOrdenados.length; j++) datos[j] = j + 1;
     }
     /** Caso randomCase que regresa un arreglo aleatoriamente ordenado.+
-     * @param datos que es conjunto de valores.
-     * @return casoAleatorio que es el caso llenado aleatoriamente.**/
+     * @param datos que es conjunto de valores.**/
     public static void randomCase(int [] datos) throws Exception{
         //Se crea e inicializa un objeto de tipo Random llamado aleatorio.
         Random aleatorio = new Random();
         //Se crean e inicializan los conjuntos del caso aleatorio, mejor y peor caso
-        int[] casoAleatorio = new int[0];
         //En caso de que la longitud recibida sea mayor a 0, se procede
         if(datos.length>0){
-            casoAleatorio = new int[datos.length];
-            for(int i = 0; i<casoAleatorio.length; i++){
+            datos = new int[datos.length];
+            for(int i = 0; i<datos.length; i++){
                 if(aleatorio.nextInt(1) == 0){
                     //en caso de que el aleatorio regrese un 1, se pone un valor ordenado.
-                    casoAleatorio[i] = i+1;
+                    datos[i] = i+1;
                 } else { //En caso de recibir otro valor (un cero) se pone un valor sin ordenar.
-                    casoAleatorio[i] = casoAleatorio.length-i;
+                    datos[i] = datos.length-i;
                 }
             }
             //En caso de recibir una longitud inválida, se lanza una excepción.
