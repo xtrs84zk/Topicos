@@ -3,8 +3,8 @@ import javax.swing.*;
 import java.util.Random;
 
 /** Created by Javier Sánchez on 03/11/2016. **/
-public class generarDatos {
-    private generarDatos(){
+public class GenerarDatos {
+    private GenerarDatos(){
         //Constructor privado para que no se puedan crear objetos de esta clase.
     }
     /**Método bestCase que regresa el mejor caso de ordenamiento posible.
