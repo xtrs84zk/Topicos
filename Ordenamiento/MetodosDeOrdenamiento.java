@@ -7,7 +7,7 @@ import java.util.Random;
 public class MetodosDeOrdenamiento {
     private MetodosDeOrdenamiento() {
         //Constructor privado para que sea imposible crear instancias de ésta clase.
-    }
+        }
 
     /**
      * Método de ordenamiento denominado burbuja, debido a que los valores "burbujean" hacía la superficie.
@@ -59,6 +59,7 @@ public class MetodosDeOrdenamiento {
      * datos del vector están casi ordenados.
      **/
     public static void shellSort(int[] datos) {
+        //Aqui va el código del shellSort.
     }
 
     /**
