@@ -1,5 +1,4 @@
 package Ordenamiento;
-import java.util.Random;
 
 /**
  * Created by Javier Sánchez on 03/11/2016.
@@ -7,13 +6,14 @@ import java.util.Random;
 public class MetodosDeOrdenamiento {
     private MetodosDeOrdenamiento() {
         //Constructor privado para que sea imposible crear instancias de ésta clase.
-        }
+    }
 
     /**
      * Método de ordenamiento denominado burbuja, debido a que los valores "burbujean" hacía la superficie.
+     *
      * @param datos que es el conjunto de datos a ordenar.
      **/
-    public static void bubbleSort(int[] datos){
+    public static void bubbleSort(int[] datos) {
         //Verifica que la referencia lleve a un objeto creado.
         if (datos != null) {
             for (int i = 0; i < datos.length; i++) {
@@ -32,26 +32,43 @@ public class MetodosDeOrdenamiento {
     }
 
     /**
-     * Método de ordenamiento por inserción **/
-    public static void seleccionIndirecta(int[] datos) {
+     * Método de ordenamiento por inserción
+     * Dicho método de ordenamiento es una manera muy natural de ordenar para un ser humano.
+     * Puede usarse fácilmente para ordenar un mazo de cartas numeradas en forma arbitraria.
+     * Requiere O(n²) operaciones para ordenar una lista de n elementos.
+     *
+     * @param datos que es el conjunto de valores a ordenar.
+     **/
+    public static void seleccionSort(int[] datos) {
         if (datos != null) {
-            int limiteSuperior, posicionActual;
-            limiteSuperior = datos.length - 1;
-            Random random = new Random();
-            int i = 0;
-            while (limiteSuperior >= 0) {
-                int aleatorio = random.nextInt(limiteSuperior) + 1;
-                //Moviendo el contenido dependiendo de si esta ordenado
-                if (datos[aleatorio] < datos[aleatorio - 1]) {
-                    int auxiliar = datos[i - 1];
-                    datos[i - 1] = datos[i];
-                    datos[i] = auxiliar;
-                }
-                limiteSuperior--;
-                i++;
+            int datosToSort = datos.length - 1;
+            for (int i = datosToSort; i > 0; i--) {
+                int indiceConElValorMasAlto = indiceConElValorMasAlto(datos, i + 1);
+                int auxiliar = datos[i];
+                datos[i] = datos[indiceConElValorMasAlto];
+                datos[indiceConElValorMasAlto] = auxiliar;
             }
         }
     }
+
+    /**
+     * Metodo privado que regresa el índice que contiene el valor más alto en un conjunto de datos.
+     *
+     * @param datos          que es el conjunto de datos sobre el cual buscará.
+     * @param limiteSuperior que es el limite donde terminará la búsqueda.
+     * @return indiceConElValorMasAlto que es la posición que contiene el mayor valor del arreglo.
+     **/
+    private static int indiceConElValorMasAlto(int[] datos, int limiteSuperior) {
+        int indiceConElValorMasAlto = 0;
+        for (int i = 0; i < limiteSuperior; i++) {
+            if (datos[indiceConElValorMasAlto] < datos[i]) {
+                indiceConElValorMasAlto = i;
+            }
+        }
+        return indiceConElValorMasAlto;
+
+    }
+
     /**
      * El algoritmo Shell sort mejora el ordenamiento por inserción comparando elementos
      * separados por un espacio de varias posiciones. Esto permite que un elemento
@@ -59,6 +76,7 @@ public class MetodosDeOrdenamiento {
      * datos se hacen con tamaños de espacio cada vez más pequeños. El último paso del ShellSort
      * es un simple ordenamiento por inserción, pero para entonces, ya está garantizado que los
      * datos del vector están casi ordenados.
+     * @param datos que es el conjunto de valores a ordenar.
      **/
     public static void shellSort(int[] datos) {
         if (datos != null) {
@@ -80,7 +98,7 @@ public class MetodosDeOrdenamiento {
 
     /**
      * Método de ordenamiento denominado burbuja, debido a que los valores "burbujean" hacía la superficie.
-     * En caso de haber hecho ningún movimiento en alguna de las "pasadas", el algoritmo ha terminado.
+     * En caso de haber hecho ningún movimiento en alguna de las "pasadas", el conjunto esta ordenado.
      *
      * @param datos que es el conjunto de datos a ordenar.
      **/
@@ -106,7 +124,8 @@ public class MetodosDeOrdenamiento {
     /**
      * Método shakeSort o de ordenación por agitación que ordena los elementos recorriéndolos de un lado a otro
      * En cada iteración da dos pasadas al conjunto ordenando el valor
-     * @param datos que es el conjunto de enteros a ordenar.
+     *
+     * @param datos que es el conjunto de valores a ordenar.
      **/
     public static void shakerSort(int[] datos) {
         //Se verifica que el conjunto de datos exista
