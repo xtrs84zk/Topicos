@@ -34,20 +34,22 @@ public class MetodosDeOrdenamiento {
     /**
      * Método de ordenamiento por inserción **/
     public static void seleccionIndirecta(int[] datos) {
-        int limiteSuperior, posicionActual;
-        limiteSuperior = datos.length - 1;
-        Random random = new Random();
-        int i = 0;
-        while (limiteSuperior >= 0) {
-            int aleatorio = random.nextInt(limiteSuperior) + 1;
-            //Moviendo el contenido dependiendo de si esta ordenado
-            if (datos[aleatorio] < datos[aleatorio - 1]) {
-                int auxiliar = datos[i - 1];
-                datos[i - 1] = datos[i];
-                datos[i] = auxiliar;
+        if (datos != null) {
+            int limiteSuperior, posicionActual;
+            limiteSuperior = datos.length - 1;
+            Random random = new Random();
+            int i = 0;
+            while (limiteSuperior >= 0) {
+                int aleatorio = random.nextInt(limiteSuperior) + 1;
+                //Moviendo el contenido dependiendo de si esta ordenado
+                if (datos[aleatorio] < datos[aleatorio - 1]) {
+                    int auxiliar = datos[i - 1];
+                    datos[i - 1] = datos[i];
+                    datos[i] = auxiliar;
+                }
+                limiteSuperior--;
+                i++;
             }
-            limiteSuperior--;
-            i++;
         }
     }
     /**
@@ -59,7 +61,21 @@ public class MetodosDeOrdenamiento {
      * datos del vector están casi ordenados.
      **/
     public static void shellSort(int[] datos) {
-        //Aqui va el código del shellSort.
+        if (datos != null) {
+            int pasoActual = datos.length / 2;
+            while (pasoActual > 0) {
+                for (int i = 0; i < (datos.length - pasoActual); i++) {
+                    int j = i;
+                    while (j >= 0 && datos[j] > datos[j + pasoActual]) {
+                        int temp = datos[j];
+                        datos[j] = datos[j + pasoActual];
+                        datos[j + pasoActual] = temp;
+                        j--;
+                    }
+                }
+                pasoActual = pasoActual / 2;
+            }
+        }
     }
 
     /**
