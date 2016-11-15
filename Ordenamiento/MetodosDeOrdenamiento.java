@@ -41,8 +41,7 @@ public class MetodosDeOrdenamiento {
      **/
     public static void seleccionSort(int[] datos) {
         if (datos != null) {
-            int datosToSort = datos.length - 1;
-            for (int i = datosToSort; i > 0; i--) {
+            for (int i = datos.length - 1; i > 0; i--) {
                 int indiceConElValorMasAlto = indiceConElValorMasAlto(datos, i + 1);
                 int auxiliar = datos[i];
                 datos[i] = datos[indiceConElValorMasAlto];
