@@ -132,7 +132,7 @@ public class MetodosDeOrdenamiento {
         if (datos != null) {
             int limiteSuperior = datos.length - 1, limiteInferior = 0, auxiliar;
             //Cada iteración sacude los elementos del conjunto hasta que estén ordenados.
-            for (int i = 0; i < datos.length; i++) {
+            for (int i = 0; i < datos.length / 2; i++) {
                 //Pasada de izquierda a derecha
                 //En caso de que el valor a la derecha sea menor, los intercambia.
                 for (int j = limiteInferior; j < limiteSuperior; j++) {
