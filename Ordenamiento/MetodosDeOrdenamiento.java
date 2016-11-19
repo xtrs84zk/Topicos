@@ -32,30 +32,28 @@ public class MetodosDeOrdenamiento {
     }
 
     /**
-     * metodo de ordenamiento que implementa el algoritmo Shell      *       * @param  datos   conjunto de valores enteros a ordenar      * @return     sin retorno
+     * Método de ordenamiento que implementa el algoritmo Shell.
+     * @param  datos   conjunto de valores enteros a ordenar
      */
     public static void shellSort(int[] datos) {
-        int intervalo, i;
+        int iteracion, i;
         boolean seRealizaronIntercambios;
-        System.out.println("tamaño: " + datos.length);
-        //muestra(datos);
-        intervalo = datos.length + 1;
-        while (intervalo > 1) {
-            intervalo /= 2;
+        iteracion = datos.length + 1;
+        while (iteracion > 1) {
+            iteracion /= 2;
             seRealizaronIntercambios = true;
-            System.out.println("intervalo: " + intervalo);
+            System.out.println("Iteración: " + iteracion);
             while (seRealizaronIntercambios) {
                 seRealizaronIntercambios = false;
                 i = 0;
-                while ((i + intervalo) < datos.length) {
-                    if (datos[i] > datos[i + intervalo]) {
-                        intercambia(datos, i, i + intervalo);
+                while ((i + iteracion) < datos.length) {
+                    if (datos[i] > datos[i + iteracion]) {
+                        intercambia(datos, i, i + iteracion);
                         seRealizaronIntercambios = true;
                     }
                     i += 1;
                 }
             }
-            //muestra(datos);
         }
     }
 
@@ -72,9 +70,7 @@ public class MetodosDeOrdenamiento {
         if (datos != null) {
             for (int i = datos.length - 1; i > 0; i--) {
                 int indiceConElValorMasAlto = indiceConElValorMasAlto(datos, i + 1);
-                int auxiliar = datos[i];
-                datos[i] = datos[indiceConElValorMasAlto];
-                datos[indiceConElValorMasAlto] = auxiliar;
+                intercambia(datos, i, indiceConElValorMasAlto);
             }
         }
     }
@@ -137,9 +133,7 @@ public class MetodosDeOrdenamiento {
                 boolean huboMovimientos = false;
                 for (int j = 0; j < datos.length; j++) {
                     if (datos[j] > datos[j + 1]) {
-                        int aux = datos[j];
-                        datos[j] = datos[j + 1];
-                        datos[j + 1] = aux;
+                        intercambia(datos, j, j + 1);
                         huboMovimientos = true;
                     }
                 }
@@ -166,9 +160,7 @@ public class MetodosDeOrdenamiento {
                 //En caso de que el valor a la derecha sea menor, los intercambia.
                 for (int j = limiteInferior; j < limiteSuperior; j++) {
                     if (datos[j] > datos[j + 1]) {
-                        auxiliar = datos[j];
-                        datos[j] = datos[j + 1];
-                        datos[j + 1] = auxiliar;
+                        intercambia(datos, j, j + 1);
                     }
                 }
                 //Se decrementa el limite superior debido a que dicho índice tiene el valor que le corresponde.
@@ -177,9 +169,7 @@ public class MetodosDeOrdenamiento {
                 //En caso de que el valor a la izquierda sea menor, los intercambia.
                 for (int k = limiteSuperior; k > limiteInferior; k--) {
                     if (datos[k] < datos[k - 1]) {
-                        auxiliar = datos[k];
-                        datos[k] = datos[k - 1];
-                        datos[k + 1] = auxiliar;
+                        intercambia(datos, k, k - 1);
                     }
                 }
                 //Se incrementa el limite inferior debido a que dicho índice posee el valor que le corresponde.
@@ -191,7 +181,7 @@ public class MetodosDeOrdenamiento {
     /**
      * Método que intercambia dos valores en un conjunto.
      *
-     * @param datos que es el conjunto sobre el cual operar
+     * @param datos que es el conjunto sobre el cual operar.
      * @param i     que es uno de los valores a intercambiar.
      * @param j     que es otro de los valores a intercambiar.
      **/
@@ -202,5 +192,23 @@ public class MetodosDeOrdenamiento {
         datos[i] = datos[j];
         //Se asigna a j el valor original de i.
         datos[j] = auxiliar;
+    }
+
+    /**
+     * Método que regresa el contenido de un arreglo de enteros.
+     * El método crea un String y concatena ahí los valores.
+     *
+     * @param datos que es el conjunto de datos a mostrar.
+     * @return temporal que contiene los valores del conjunto.
+     **/
+    public static String muestra(int[] datos) {
+        //Variable temporal donde se almacenará el contenido del conjunto datos.
+        String temporal = "Mostrando los valores en el conjunto. \n";
+        //Foreach que recorre el arreglo concatenando cada valor en temporal.
+        for (int dato : datos) {
+            temporal += ("[" + dato + "], ");
+        }
+        //Se regresa el String.
+        return temporal;
     }
 }
