@@ -32,6 +32,34 @@ public class MetodosDeOrdenamiento {
     }
 
     /**
+     * metodo de ordenamiento que implementa el algoritmo Shell      *       * @param  datos   conjunto de valores enteros a ordenar      * @return     sin retorno
+     */
+    public static void shellSort(int[] datos) {
+        int intervalo, i;
+        boolean seRealizaronIntercambios;
+        System.out.println("tamaño: " + datos.length);
+        //muestra(datos);
+        intervalo = datos.length + 1;
+        while (intervalo > 1) {
+            intervalo /= 2;
+            seRealizaronIntercambios = true;
+            System.out.println("intervalo: " + intervalo);
+            while (seRealizaronIntercambios) {
+                seRealizaronIntercambios = false;
+                i = 0;
+                while ((i + intervalo) < datos.length) {
+                    if (datos[i] > datos[i + intervalo]) {
+                        intercambia(datos, i, i + intervalo);
+                        seRealizaronIntercambios = true;
+                    }
+                    i += 1;
+                }
+            }
+            //muestra(datos);
+        }
+    }
+
+    /**
      * Método de ordenamiento por inserción
      * Dicho método de ordenamiento es una manera muy natural de ordenar para un ser humano.
      * Puede usarse fácilmente para ordenar un mazo de cartas numeradas en forma arbitraria.
@@ -39,7 +67,8 @@ public class MetodosDeOrdenamiento {
      *
      * @param datos que es el conjunto de valores a ordenar.
      **/
-    public static void seleccionSort(int[] datos) {
+
+    public static void selectionSort(int[] datos) {
         if (datos != null) {
             for (int i = datos.length - 1; i > 0; i--) {
                 int indiceConElValorMasAlto = indiceConElValorMasAlto(datos, i + 1);
@@ -75,25 +104,26 @@ public class MetodosDeOrdenamiento {
      * datos se hacen con tamaños de espacio cada vez más pequeños. El último paso del ShellSort
      * es un simple ordenamiento por inserción, pero para entonces, ya está garantizado que los
      * datos del vector están casi ordenados.
+     *
      * @param datos que es el conjunto de valores a ordenar.
-     **/
     public static void shellSort(int[] datos) {
-        if (datos != null) {
-            int pasoActual = datos.length / 2;
-            while (pasoActual > 0) {
-                for (int i = 0; i < (datos.length - pasoActual); i++) {
-                    int j = i;
-                    while (j >= 0 && datos[j] > datos[j + pasoActual]) {
-                        int temp = datos[j];
-                        datos[j] = datos[j + pasoActual];
-                        datos[j + pasoActual] = temp;
-                        j--;
-                    }
-                }
-                pasoActual = pasoActual / 2;
-            }
-        }
+    if (datos != null) {
+    int pasoActual = datos.length / 2;
+    while (pasoActual > 0) {
+    for (int i = 0; i < (datos.length - pasoActual); i++) {
+    int j = i;
+    while (j >= 0 && datos[j] > datos[j + pasoActual]) {
+    int temp = datos[j];
+    datos[j] = datos[j + pasoActual];
+    datos[j + pasoActual] = temp;
+    j--;
     }
+    }
+    pasoActual = pasoActual / 2;
+    }
+    }
+    }
+     **/
 
     /**
      * Método de ordenamiento denominado burbuja, debido a que los valores "burbujean" hacía la superficie.
@@ -156,5 +186,21 @@ public class MetodosDeOrdenamiento {
                 limiteInferior++;
             } //Aquí termina cada pasada
         }
+    }
+
+    /**
+     * Método que intercambia dos valores en un conjunto.
+     *
+     * @param datos que es el conjunto sobre el cual operar
+     * @param i     que es uno de los valores a intercambiar.
+     * @param j     que es otro de los valores a intercambiar.
+     **/
+    private static void intercambia(int[] datos, int i, int j) {
+        //Se salva el contenido del valor1 en una variable auxiliar.
+        int auxiliar = datos[i];
+        //Se asigna a la posición i el valor en la posición j.
+        datos[i] = datos[j];
+        //Se asigna a j el valor original de i.
+        datos[j] = auxiliar;
     }
 }
