@@ -1,4 +1,4 @@
-package aplicacion;
+package Ordenamiento;
 
 import java.util.Scanner;
 
