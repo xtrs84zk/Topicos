@@ -12,22 +12,30 @@ public class SortTest {
     public static void main(String[] args) {
         //Declaración de variables.
         boolean pruebaAutomatica = false;
-        int longitudDeLosDatos, porcentajeDeOrdenamiento, metodoActualEnLaPruebaAutomatica = 1, metodoDeOrdenamiento = 0;
-        String mensajeBubbleSort, mensajeShellSort, mensajeBubbleSortWithSignal, mensajeSelectionSort, mensajeShakerSort;
+        int longitudDeLosDatos;
+        int porcentajeDeOrdenamiento;
+        int metodoActualEnLaPruebaAutomatica = 1;
+        int metodoDeOrdenamiento = 0;
+        String mensajeBubbleSort;
+        String mensajeShellSort;
+        String mensajeBubbleSortWithSignal;
+        String mensajeSelectionSort;
+        String mensajeShakerSort;
         //Variables donde se almacenará el conjunto de valores que será
         //probado con los diversos métodos de ordenamiento.
         int[] datosBestCase, datosWorstCase, datosMixedCase, datosRandomCase;
         //Creación de objetos.
         Scanner entrada = new Scanner(System.in);
         System.out.println("SortTest.");
-        System.out.print("\n¿Qué longitud desea que tengan los datos?");
-        longitudDeLosDatos = entrada.nextInt();
         //Mostrando información sobre la dinámica de resolución.
         System.out.println("Los métodos de ordenamiento serán probados en los siguientes casos: ");
         System.out.println("1. El mejor caso de ordenamiento.");
         System.out.println("2. El peor caso de ordenamiento.");
         System.out.println("3. Un caso aleatorio de ordenamiento.");
         System.out.println("4. Un caso mixto de ordenamiento.");
+        //Pidiendo la cantidad de datos que se desea ordenar.
+        System.out.print("¿Qué longitud desea que tengan los datos?");
+        longitudDeLosDatos = entrada.nextInt();
         //Pidiendo datos necesarios para probar los métodos.
         System.out.println("Para el caso mixto necesitaré el porcentaje de ordenamiento.");
         System.out.print("\n Inserta dicho porcentaje: ");
@@ -57,7 +65,7 @@ public class SortTest {
                 if (metodoDeOrdenamiento == 6) {
                     pruebaAutomatica = true;
                 } else {
-                    metodoDeOrdenamiento = seleccionarMetodoDeOrdenamiento();
+                    metodoDeOrdenamiento = seleccionarMetodoDeOrdenamiento(entrada);
                 }
             } else {
                 if (metodoActualEnLaPruebaAutomatica == 6) {
@@ -136,11 +144,17 @@ public class SortTest {
                     break;
             }
         } while (metodoDeOrdenamiento != 7);
+        System.out.println();
         System.out.println("Finalizado. :)");
     }
 
-    private static int seleccionarMetodoDeOrdenamiento() {
-        Scanner entrada = new Scanner(System.in);
+    /**
+     * Método para seleccionar el método de ordenamiento a usar.
+     *
+     * @param entrada que es el lector de datos de tipo Scanner.
+     * @return metodoDeOrdenamiento que es el método seleccionado.
+     **/
+    private static int seleccionarMetodoDeOrdenamiento(Scanner entrada) {
         int metodoDeOrdenamiento;
         do {
             System.out.println("¿Qué método de ordenamiento desea probar?");
