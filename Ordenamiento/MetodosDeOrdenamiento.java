@@ -17,12 +17,10 @@ public class MetodosDeOrdenamiento {
         //Verifica que la referencia lleve a un objeto creado.
         if (datos != null) {
             for (int i = 0; i < datos.length; i++) {
-                for (int j = 0; j < datos.length; j++) {
+                for (int j = 0; j < datos.length - 1; j++) {
                     //En caso de que el valor a la derecha sea menor, los intercambia.
                     if (datos[j] > datos[j + 1]) {
-                        int auxiliar = datos[j];
-                        datos[j] = datos[j + 1];
-                        datos[j + 1] = auxiliar;
+                        intercambia(datos, j, j + 1);
                     }
                 }
             }
@@ -42,7 +40,6 @@ public class MetodosDeOrdenamiento {
         while (iteracion > 1) {
             iteracion /= 2;
             seRealizaronIntercambios = true;
-            System.out.println("Iteración: " + iteracion);
             while (seRealizaronIntercambios) {
                 seRealizaronIntercambios = false;
                 i = 0;
@@ -104,7 +101,7 @@ public class MetodosDeOrdenamiento {
             int i = 0;
             while (i < datos.length) {
                 boolean huboMovimientos = false;
-                for (int j = 0; j < datos.length; j++) {
+                for (int j = 0; j < datos.length - 1; j++) {
                     if (datos[j] > datos[j + 1]) {
                         intercambia(datos, j, j + 1);
                         huboMovimientos = true;

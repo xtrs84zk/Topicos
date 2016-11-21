@@ -12,7 +12,6 @@ public class GenerarDatos {
         //Se llena el conjunto con valores ordenados (en forma ascendiente).
         for(int i = 0; i<datos.length; i++) datos[i] = (i + 1);
     }
-
     /** Método worstCase que genera el peor caso de ordenamiento posible.
      * @param datos que son los datos requerida. **/
     public static void worstCase(int [] datos){
@@ -25,7 +24,7 @@ public class GenerarDatos {
      * @param datos que es el conjunto total de datos.
      * @param porcentaje que es el porcentaje de ordenamiento que tendrán los datos.**/
     public static void mixedCase(int [] datos, int porcentaje) throws Exception{
-        //En caso de que el porcentaje recibido sea inútil para la operacion, se lanza una excepcion.
+        //En caso de que el porcentaje recibido sea inútil para la operación, se lanza una excepción.
         if(porcentaje<1 || porcentaje>100) throw new Exception("El porcentaje dado no es válido.");
         //Se crea el objeto Random con nombre aleatorio.
         Random aleatorio = new Random();
@@ -40,7 +39,7 @@ public class GenerarDatos {
     }
     /** Caso randomCase que regresa un arreglo aleatoriamente ordenado.+
      * @param datos que es conjunto de valores.**/
-    public static void randomCase(int [] datos) throws Exception{
+    public static void randomCase(int[] datos) {
         //Se crea e inicializa un objeto de tipo Random llamado aleatorio.
         Random aleatorio = new Random();
         //Se crean e inicializan los conjuntos del caso aleatorio, mejor y peor caso
@@ -55,9 +54,6 @@ public class GenerarDatos {
                     datos[i] = datos.length-i;
                 }
             }
-            //En caso de recibir una longitud inválida, se lanza una excepción.
-        } else {
-            throw new Exception("La longitud es menor a uno.");
         }
     }
 }
