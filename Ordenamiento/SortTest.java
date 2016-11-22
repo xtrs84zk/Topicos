@@ -38,7 +38,7 @@ public class SortTest {
         longitudDeLosDatos = entrada.nextInt();
         //Pidiendo datos necesarios para probar los métodos.
         System.out.println("Para el caso mixto necesitaré el porcentaje de ordenamiento.");
-        System.out.print("\n Inserta dicho porcentaje: ");
+        System.out.print("Inserta dicho porcentaje: ");
         porcentajeDeOrdenamiento = entrada.nextInt();
         //Generando los datos.
         System.out.println("Generando los datos...");
@@ -224,6 +224,50 @@ public class SortTest {
         shakerSort(datos);
         //Almacenando el momento en que finaliza el método.
         long tiempoDeFinalizacion = System.currentTimeMillis();
+        return tiempoDeFinalizacion - tiempoDeInicio;
+    }
+
+    /**
+     * Método que prueba los distintos métodos de ordenamiento
+     * y regresa la duración en milisegundos de dicho método.
+     *
+     * @param datos  que es el conjunto de datos a ordenar.
+     * @param method que es el método a usar en la ordenación.
+     * @return tiempoDeFinalizacion - tiempoDeInicio que es el
+     * tiempo total de ejecución que utilizó el método probado.
+     **/
+    private static long probarMetodosDeOrdenamiento(int[] datos, int method) {
+        //Variable de tipo long donde se almacena el momento exacto en que
+        //el método de ordenamiento es llamado.
+        long tiempoDeInicio, tiempoDeFinalizacion;
+        //Se inicializa el tiempo de inicio, el valor será afinado más adelante.
+        tiempoDeInicio = System.currentTimeMillis();
+        switch (method) {
+            case 1:
+                tiempoDeInicio = System.currentTimeMillis();
+                bubbleSort(datos);
+                break;
+            case 2:
+                tiempoDeInicio = System.currentTimeMillis();
+                bubbleSortWithSignal(datos);
+                break;
+            case 3:
+                tiempoDeInicio = System.currentTimeMillis();
+                shellSort(datos);
+                break;
+            case 4:
+                tiempoDeInicio = System.currentTimeMillis();
+                selectionSort(datos);
+                break;
+            case 5:
+                tiempoDeInicio = System.currentTimeMillis();
+                shakerSort(datos);
+                break;
+        }
+        //Almacenando el momento en que finaliza el método.
+        tiempoDeFinalizacion = System.currentTimeMillis();
+        //Regresando el tiempo de ejecución al restar el tiempo de inicio
+        //del tiempo final. El tiempo se regresa en milisegundos.
         return tiempoDeFinalizacion - tiempoDeInicio;
     }
 }
