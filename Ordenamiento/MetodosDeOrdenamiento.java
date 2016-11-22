@@ -150,6 +150,39 @@ public class MetodosDeOrdenamiento {
     }
 
     /**
+     * Método de ordenamiento rápido basado en la técnica de divide y vencerás.
+     *
+     * @param datos que es el conjunto de datos a ordenar.
+     * @indiceInicial que será el índice inferior al ordenar.
+     * @indiceFinal que será el índice superior al ordenar.
+     **/
+    public static void quickSort(int[] datos, int indiceInicial, int indiceFinal) {
+        //Mejor caso
+        if (indiceFinal <= indiceInicial || indiceInicial >= indiceFinal) {
+            return;
+        }
+        //Caso recursivo
+        else {
+            int i = indiceInicial + 1;
+
+            //Dividiendo el arreglo
+            for (int j = indiceInicial + 1; j <= indiceFinal; j++) {
+                if (datos[indiceInicial] > datos[j]) {
+                    intercambia(datos, j, i);
+                    i++;
+                }
+            }
+
+            //Moviendo el pivote a la derecha del índice inicial
+            datos[indiceInicial] = datos[i - 1];
+            datos[i - 1] = datos[indiceInicial];
+
+            //Llamada al método quickSort a la derecha y a la izquierda del índice inicial del pivote
+            quickSort(datos, indiceInicial, i - 2);
+            quickSort(datos, i, indiceFinal);
+        }
+    }
+    /**
      * Método que intercambia dos valores en un conjunto.
      *
      * @param datos que es el conjunto sobre el cual operar.
