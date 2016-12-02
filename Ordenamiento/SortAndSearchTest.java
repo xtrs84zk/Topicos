@@ -34,8 +34,9 @@ public class SortAndSearchTest {
                 case 1:
                     if (yaSeHanGeneradoDatos) {
                         String[][] tabla = compararMetodosDeOrdenamiento(datosBestCase, datosWorstCase, datosMixedCase, datosRandomCase);
+                        break;
                     } else {
-                        JOptionPane.showMessageDialog(null, "No se han generado datos.");
+                        JOptionPane.showMessageDialog(null, "No se han generado datos, mostrando el menú para generarlos.");
                     }
                 case 3:
                     if (!yaSeHanGeneradoDatos) {
@@ -50,7 +51,15 @@ public class SortAndSearchTest {
                         yaSeHanGeneradoDatos = true;
                         break;
                     } else {
-                        JOptionPane.showMessageDialog(null, "Ya se han generado datos, ¿desea reemplazarlos?");
+                        int reemplazo = Integer.parseInt(JOptionPane.showInputDialog(null, "Ya se han generado datos, presione 1 para eliminar los actuales."));
+                        if (1 == reemplazo) {
+                            datosBestCase = new int[0];
+                            datosWorstCase = new int[0];
+                            datosMixedCase = new int[0];
+                            datosRandomCase = new int[0];
+                            yaSeHanGeneradoDatos = false;
+                            JOptionPane.showMessageDialog(null, "Los datos se han eliminado correctamente.");
+                        }
                     }
 
             }
