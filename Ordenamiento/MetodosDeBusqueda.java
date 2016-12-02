@@ -72,8 +72,11 @@ public class MetodosDeBusqueda {
         return false;
     }
 
+    /**
+     * Método que realiza una búsqueda por hash en un conjunto de datos ordenados.
+     **/
     public static boolean busquedaHash(int[] datos, int elementoABuscar) {
-        //Aquí se hace el procedimiento para la búsqueda hash :v
+        //Aquí se hace el procedimiento para la búsqueda hash.
         return false;
     }
 }
