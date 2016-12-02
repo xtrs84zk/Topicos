@@ -149,6 +149,14 @@ public class MetodosDeOrdenamiento {
         }
     }
 
+    public static void quickSort(int[] datos) {
+        if (datos != null && datos.length > 1) {
+            quickSortRecursivo(datos, 0, datos.length - 1);
+        } else {
+            System.err.println("Hubo un error al ordenar usando quicksort.");
+            //quickSortIterativo(datos);
+        }
+    }
     /**
      * Método de ordenamiento rápido basado en la técnica de divide y vencerás.
      *
@@ -156,7 +164,7 @@ public class MetodosDeOrdenamiento {
      * @indiceInferior que será el conjunto a la indiceInferior  al ordenar.
      * @indiceSuperior que será el conjunto derecho al ordenar.
      **/
-    public static void quickSortRecursivo(int[] datos, int indiceInferior, int indiceSuperior) {
+    private static void quickSortRecursivo(int[] datos, int indiceInferior, int indiceSuperior) {
         //Mejor caso
         if (indiceSuperior <= indiceInferior || indiceInferior >= indiceSuperior) {
             //Aqui no se hace nada y termina el caso.
@@ -188,7 +196,6 @@ public class MetodosDeOrdenamiento {
     public static void quickSortIterativo() {
 
     }
-
 
     /**
      * Método que intercambia dos valores en un conjunto.
