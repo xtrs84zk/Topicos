@@ -153,35 +153,43 @@ public class MetodosDeOrdenamiento {
      * Método de ordenamiento rápido basado en la técnica de divide y vencerás.
      *
      * @param datos que es el conjunto de datos a ordenar.
-     * @indiceInicial que será el índice inferior al ordenar.
-     * @indiceFinal que será el índice superior al ordenar.
+     * @indiceInferior que será el conjunto a la indiceInferior  al ordenar.
+     * @indiceSuperior que será el conjunto derecho al ordenar.
      **/
-    public static void quickSort(int[] datos, int indiceInicial, int indiceFinal) {
+    public static void quickSortRecursivo(int[] datos, int indiceInferior, int indiceSuperior) {
         //Mejor caso
-        if (indiceFinal <= indiceInicial || indiceInicial >= indiceFinal) {
-            return;
+        if (indiceSuperior <= indiceInferior || indiceInferior >= indiceSuperior) {
+            //Aqui no se hace nada y termina el caso.
         }
         //Caso recursivo
         else {
-            int i = indiceInicial + 1;
+            int i = indiceInferior + 1;
 
             //Dividiendo el arreglo
-            for (int j = indiceInicial + 1; j <= indiceFinal; j++) {
-                if (datos[indiceInicial] > datos[j]) {
+            int j = indiceInferior + 1;
+            while (j <= indiceSuperior) {
+                if (datos[indiceInferior] > datos[j]) {
                     intercambia(datos, j, i);
                     i++;
                 }
+                j++;
             }
 
             //Moviendo el pivote a la derecha del índice inicial
-            datos[indiceInicial] = datos[i - 1];
-            datos[i - 1] = datos[indiceInicial];
+            datos[indiceInferior] = datos[i - 1];
+            datos[i - 1] = datos[indiceInferior];
 
-            //Llamada al método quickSort a la derecha y a la izquierda del índice inicial del pivote
-            quickSort(datos, indiceInicial, i - 2);
-            quickSort(datos, i, indiceFinal);
+            //Llamada al método quickSortRecursivo a la izquierda y a la derecha del índice inicial del pivote
+            quickSortRecursivo(datos, indiceInferior, i - 2);
+            quickSortRecursivo(datos, i, indiceSuperior);
         }
     }
+
+    public static void quickSortIterativo() {
+
+    }
+
+
     /**
      * Método que intercambia dos valores en un conjunto.
      *
